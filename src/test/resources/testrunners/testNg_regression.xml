@@ -1,0 +1,29 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="MyTestSuite" parallel="methods" thread-count="2">
+
+  <parameter name="browser" value="chrome"/>
+
+  <test name="RegressionTest">
+    <groups>
+      <run>
+        <include name="smoke"/>
+        <exclude name="wip"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="com.example.tests.LoginTest">
+        <methods>
+          <include name="testValidLogin"/>
+        </methods>
+      </class>
+      <class name="com.example.tests.ProductTest"/>
+    </classes>
+  </test>
+
+  <test name="SanityTest">
+    <classes>
+      <class name="com.example.tests.HomePageTest"/>
+    </classes>
+  </test>
+
+</suite>
