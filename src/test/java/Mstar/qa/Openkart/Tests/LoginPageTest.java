@@ -22,7 +22,7 @@ public class LoginPageTest extends BaseTest{
 		Assert.assertEquals(url, Constants.LOGIN_PAGE_URL);
 	}
 	
-	@Test
+	@Test (priority = 1)
 	public void dologinTest() {
 		loginPage.dologin(prop.getProperty("username").trim(), prop.getProperty("password").trim());
 	}

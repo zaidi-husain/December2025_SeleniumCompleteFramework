@@ -5,6 +5,8 @@ import java.util.Properties;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Optional;
+import org.testng.annotations.Parameters;
 
 import Mstar.qa.Openkart.Factory.DriverFactory;
 import Mstar.qa.Openkart.Pages.LoginPage;
@@ -18,12 +20,15 @@ public class BaseTest {
 	public Constants Constants;
 	public Properties prop;
 	
+	@Parameters({"browser"})
 	@BeforeTest
-	public void setup() {
+	public void setup(@Optional("chrome") String browser) {
 		df = new DriverFactory();
 		prop = df.initProp();
-		driver = df.initDriver(prop);
-		
+		if(browser!=null) {
+			prop.setProperty("browser", browser);
+		}
+		driver = df.initDriver(prop);	
 		loginPage = new LoginPage(driver);
 		
 		
